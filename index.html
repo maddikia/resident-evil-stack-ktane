@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/fonts.css" />
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
+    <title>Bomb Defusal Game</title>
+</head>
+<body>
+    <div class="bomb-container">
+        <!-- Timer Module -->
+        <div class="module timer-module">
+            <div class="timer-frame">
+                <div class="speaker"></div>
+                <div class="timer-display">
+                    <div class="timer">30:00</div>
+                </div>
+            </div>
+        </div>
+        <!-- Module 1: Color Buttons & Morse Code -->
+        <div class="module module-green">
+            <div class="module-header">
+                <button class="module-submit" id="submit-morse">CHECK</button>
+                <div class="indicator-light" id="module1-light"></div>
+            </div>
+
+            <div class="module-content">
+                <div class="color-buttons mini-module">
+                    <div class="color-button" style="background-color: yellow;" data-color="yellow"></div>
+                    <div class="color-button" style="background-color: pink;" data-color="lpink"></div>
+                    <div class="color-button" style="background-color: magenta;" data-color="magenta"></div>
+                    <div class="color-button" style="background-color: purple;" data-color="purple"></div>
+                    <div class="color-button" style="background-color: red;" data-color="red"></div>
+                    <div class="color-button" style="background-color: blue;" data-color="blue"></div>
+                    <div class="color-button" style="background-color: black;" data-color="black"></div>
+                    <div class="color-button" style="background-color: green;" data-color="green"></div>
+                    <div class="color-button" style="background-color: orange;" data-color="orange"></div>
+                    <div class="color-button" style="background-color: #ccff00;" data-color="nyellow"></div>
+                </div>
+                
+                <div class="morse-input mini-module">
+                    <div class="morse-display" id="morse-display"></div>
+                    <div class="morse-buttons">
+                        <button class="morse-button" id="dot-button">·</button>
+                        <button class="morse-button" id="dash-button">-</button>
+                        <button class="morse-button" id="space-button">Space</button>
+                        <button class="clear-button" id="clear-morse">Clear</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Submit Module -->
+        <div class="module submit-module module-red">
+            <div class="module-header">
+                <div class="indicator-lights">
+                    <div class="submit-light" id="module1-submit-light"></div>
+                    <div class="submit-light" id="module2-submit-light"></div>
+                    <div class="submit-light" id="module3-submit-light"></div>
+                </div>
+            </div>
+            <button class="submit-button" id="main-submit" disabled>SUBMIT</button>
+        </div>
+        
+        <!-- Module 2: Silhouettes -->
+        <div class="module module-blue">
+            <div class="module-header">
+                <button class="module-submit" id="submit-word">CHECK</button>
+                <div class="indicator-light" id="module2-light"></div>
+            </div>
+
+            <div class="module-content">
+                <div class="silhouette-buttons mini-module">
+                    <div class="silhouette-button" data-silhouette="lamp">
+                        <img src="images/icons/bed-lamp.svg" alt="lamp">
+                    </div>
+                    <div class="silhouette-button" data-silhouette="gun">
+                        <img src="images/icons/pistol-gun.svg" alt="gun">
+                    </div>
+                    <div class="silhouette-button" data-silhouette="clock">
+                        <img src="images/icons/alarm-clock.svg" alt="clock">
+                    </div>
+                    <div class="silhouette-button" data-silhouette="lion">
+                        <img src="images/icons/lion.svg" alt="lion">
+                    </div>
+                    <div class="silhouette-button" data-silhouette="chainsaw">
+                        <img src="images/icons/chainsaw.svg" alt="chainsaw">
+                    </div>
+                    <div class="silhouette-button" data-silhouette="plaga">
+                        <img src="images/icons/leeching-worm.svg" alt="plaga">
+                    </div>
+                    <div class="silhouette-button" data-silhouette="castle">
+                        <img src="images/icons/castle.svg" alt="castle">
+                    </div>
+                    <div class="silhouette-button" data-silhouette="cure">
+                        <img src="images/icons/vial.svg" alt="cure">
+                    </div>
+                    <div class="silhouette-button" data-silhouette="knight">
+                        <img src="images/icons/mounted-knight.svg" alt="knight">
+                    </div>
+                </div>
+                
+                <div class="word-selector mini-module">
+                    <div class="selector-arrow" id="word-prev">←</div>
+                    <div class="selected-word" id="selected-word">CHECK</div>
+                    <div class="selector-arrow" id="word-next">→</div>
+                </div>
+    
+            </div>
+            
+
+        </div>
+
+        <!-- Empty Module: Note -->
+        <div class="module module-red">
+            <div class="note-container">
+                <div class="tape tape-left"></div>
+                <div class="tape tape-right"></div>
+                <div class="note">
+                  <p>Thought I should leave you with a parting gift from your most gracious host. Consider it… a blast from me to you.</p>
+                  <p>I do hope you enjoy fireworks…</p>
+                  <p class="signature">- RS</p>
+                </div>
+              </div>
+        </div>
+        
+        <!-- Module 3: Clock and Knobs -->
+        <div class="module module-yellow">
+            <div class="module-header">
+                <button class="module-submit" id="submit-clock">CHECK</button>
+                <div class="indicator-light" id="module3-light"></div>
+            </div>
+            
+            <div class="module-content">
+                <div class="clock-container">
+                    <div class="clock-face">
+                        <div class="clock-center"></div>
+                        <div class="hour-hand" id="hour-hand"></div>
+                        <div class="minute-hand" id="minute-hand"></div>
+                        <div class="clock-numbers"></div>
+                    </div>
+                    
+                    <div class="knob-controls">
+                        <div class="knob" data-knob="0">
+                            <div class="knob-indicator"></div>
+                            <!-- <div class="knob-label">+1h</div> -->
+                        </div>
+                        <div class="knob" data-knob="1">
+                            <div class="knob-indicator"></div>
+                            <!-- <div class="knob-label">+10m</div> -->
+                        </div>
+                        <div class="knob" data-knob="2">
+                            <div class="knob-indicator"></div>
+                            <!-- <div class="knob-label">+5m</div> -->
+                        </div>
+                        <div class="knob" data-knob="3">
+                            <div class="knob-indicator"></div>
+                            <!-- <div class="knob-label">+1m</div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="game-over" id="game-over">
+        <h1 id="game-over-text">BOOM!</h1>
+        <button class="restart-button" id="restart-button">TRY AGAIN</button>
+    </div>
+
+    <script src="modules.js"></script>
+</body>
+</html>

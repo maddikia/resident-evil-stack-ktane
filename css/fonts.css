@@ -1,0 +1,7 @@
+@font-face {
+    font-family: 'Digital Clock'; /* Choose any name you want to reference this font */
+    src: url('../fonts/digital-7.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap; /* Prevents invisible text while loading */
+}

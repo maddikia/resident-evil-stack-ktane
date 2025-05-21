@@ -1,0 +1,201 @@
+/* Color Buttons Module */
+.module-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+/* Module header with CHECK button */
+.module-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 15px;
+}
+
+.check-button {
+    background-color: #444;
+    color: #fff;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    font-size: 14px;
+    padding: 5px 15px;
+    border: 2px solid #333;
+    border-radius: 4px;
+    cursor: pointer;
+    text-transform: uppercase;
+    box-shadow: 
+        0 2px 0 #222,
+        0 3px 3px rgba(0, 0, 0, 0.3);
+}
+
+.check-button:hover {
+    background-color: #555;
+}
+
+.check-button:active {
+    transform: translateY(2px);
+    box-shadow: 0 0 0 #222;
+}
+
+.check-button.success {
+    color: #33ff33;
+}
+
+/* Color buttons grid panel */
+.color-buttons {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 10px;
+    padding: 15px;
+    background-color: #1a1a1a;
+    border-radius: 4px;
+    border: 2px solid #111;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.7);
+}
+
+.color-button {
+    width: 45px;
+    height: 45px;
+    border-radius: 4px;
+    border: 3px solid #222;
+    cursor: pointer;
+    transition: all 0.1s ease;
+    box-shadow: 
+        0 3px 5px rgba(0, 0, 0, 0.3),
+        inset 0 1px 2px rgba(255, 255, 255, 0.2);
+}
+
+.color-button:hover {
+    transform: scale(1.05);
+}
+
+.color-button:active {
+    transform: scale(0.95);
+}
+
+.color-button.selected {
+    border-color: yellow;
+    box-shadow: 
+        0 0 10px yellow,
+        0 3px 5px rgba(0, 0, 0, 0.3),
+        inset 0 1px 2px rgba(255, 255, 255, 0.2);
+}
+
+/* Morse code panel */
+.morse-input {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px;
+    background-color: #1a1a1a;
+    border-radius: 4px;
+    border: 2px solid #111;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.7);
+}
+
+.morse-display {
+    width: 100%;
+    height: 40px;
+    background-color: #000;
+    color: #33ff33;
+    text-align: center;
+    line-height: 40px;
+    font-family: 'Courier New', monospace;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.8);
+    border: 2px inset #222;
+    text-shadow: 0 0 5px rgba(51, 255, 51, 0.5);
+}
+
+.morse-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.morse-button {
+    padding: 8px 15px;
+    background-color: #444;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    box-shadow: 
+        0 3px 0 #222,
+        0 4px 5px rgba(0, 0, 0, 0.4);
+    transition: all 0.1s;
+}
+
+.morse-button:hover {
+    background-color: #555;
+}
+
+.morse-button:active {
+    transform: translateY(3px);
+    box-shadow: 0 0 0 #222;
+}
+
+#space-button {
+    flex-grow: 1;
+    max-width: 100px;
+}
+
+.clear-button {
+    padding: 8px 15px;
+    background-color: #8b0000;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    box-shadow: 
+        0 3px 0 #5a0000,
+        0 4px 5px rgba(0, 0, 0, 0.4);
+    transition: all 0.1s;
+}
+
+.clear-button:hover {
+    background-color: #a00000;
+}
+
+.clear-button:active {
+    transform: translateY(3px);
+    box-shadow: 0 0 0 #5a0000;
+}
+
+.module-submit {
+    padding: 8px 15px;
+    margin-top: 10px;
+    align-self: center;
+    width: 100px;
+    background-color: #444;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    box-shadow: 
+        0 3px 0 #222,
+        0 4px 5px rgba(0, 0, 0, 0.4);
+    transition: all 0.1s;
+    text-transform: uppercase;
+}
+
+.module-submit:hover {
+    background-color: #555;
+}
+
+.module-submit:active {
+    transform: translateY(3px);
+    box-shadow: 0 0 0 #222;
+}

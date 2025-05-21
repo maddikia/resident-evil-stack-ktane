@@ -1,0 +1,55 @@
+/* Silhouettes Module */
+.silhouette-buttons {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 15px;
+    /* padding: 0 50px; */
+}
+
+.silhouette-button {
+    width: 50px;
+    height: 50px;
+    background-color: #222;
+    border: 2px solid #333;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    place-self: center;
+}
+
+.silhouette-button img {
+    max-width: 90%;
+    max-height: 90%;
+}
+
+.silhouette-button.selected {
+    border: 2px solid #ffcc00;
+}
+
+.word-selector {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15px;
+    gap: 10px;
+}
+
+.selector-arrow {
+    font-size: 24px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.selected-word {
+    width: 150px;
+    height: 30px;
+    background-color: #111;
+    color: #33ff33;
+    text-align: center;
+    line-height: 30px;
+    font-family: 'Courier New', monospace;
+}
