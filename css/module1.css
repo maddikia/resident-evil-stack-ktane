@@ -1,48 +1,4 @@
 /* Color Buttons Module */
-.module-content {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    justify-content: space-between;
-    gap: 15px;
-}
-
-/* Module header with CHECK button */
-.module-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-bottom: 15px;
-}
-
-.check-button {
-    background-color: #444;
-    color: #fff;
-    font-family: 'Courier New', monospace;
-    font-weight: bold;
-    font-size: 14px;
-    padding: 5px 15px;
-    border: 2px solid #333;
-    border-radius: 4px;
-    cursor: pointer;
-    text-transform: uppercase;
-    box-shadow: 
-        0 2px 0 #222,
-        0 3px 3px rgba(0, 0, 0, 0.3);
-}
-
-.check-button:hover {
-    background-color: #555;
-}
-
-.check-button:active {
-    transform: translateY(2px);
-    box-shadow: 0 0 0 #222;
-}
-
-.check-button.success {
-    color: #33ff33;
-}
 
 /* Color buttons grid panel */
 .color-buttons {
@@ -58,12 +14,11 @@
 }
 
 .color-button {
-    width: 45px;
-    height: 45px;
-    border-radius: 4px;
+    aspect-ratio: 1/1;
+    border-radius: 6px;
     border: 3px solid #222;
     cursor: pointer;
-    transition: all 0.1s ease;
+    transition: all 0.15s ease;
     box-shadow: 
         0 3px 5px rgba(0, 0, 0, 0.3),
         inset 0 1px 2px rgba(255, 255, 255, 0.2);
@@ -71,18 +26,13 @@
 
 .color-button:hover {
     transform: scale(1.05);
+    box-shadow: 
+        0 5px 8px rgba(0, 0, 0, 0.4),
+        inset 0 1px 3px rgba(255, 255, 255, 0.3);
 }
 
 .color-button:active {
     transform: scale(0.95);
-}
-
-.color-button.selected {
-    border-color: yellow;
-    box-shadow: 
-        0 0 10px yellow,
-        0 3px 5px rgba(0, 0, 0, 0.3),
-        inset 0 1px 2px rgba(255, 255, 255, 0.2);
 }
 
 /* Morse code panel */
@@ -143,10 +93,10 @@
     box-shadow: 0 0 0 #222;
 }
 
-#space-button {
+/* #space-button {
     flex-grow: 1;
     max-width: 100px;
-}
+} */
 
 .clear-button {
     padding: 8px 15px;
@@ -170,32 +120,4 @@
 .clear-button:active {
     transform: translateY(3px);
     box-shadow: 0 0 0 #5a0000;
-}
-
-.module-submit {
-    padding: 8px 15px;
-    margin-top: 10px;
-    align-self: center;
-    width: 100px;
-    background-color: #444;
-    color: white;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-    font-family: 'Courier New', monospace;
-    font-weight: bold;
-    box-shadow: 
-        0 3px 0 #222,
-        0 4px 5px rgba(0, 0, 0, 0.4);
-    transition: all 0.1s;
-    text-transform: uppercase;
-}
-
-.module-submit:hover {
-    background-color: #555;
-}
-
-.module-submit:active {
-    transform: translateY(3px);
-    box-shadow: 0 0 0 #222;
 }

@@ -1,18 +1,15 @@
+@import 'module_base.css';
 @import 'module1.css';
 @import 'module2.css';
 @import 'module3.css';
+@import 'submit_module.css';
 @import 'note.css';
 @import 'timer.css';
 
 :root {
-    --module-bg: #333;
-    --bomb-bg: #2b2b2bca;
     --light-off: #555;
     --light-red: #ff3333;
     --light-green: #33ff33;
-    --button-bg: #666;
-    --button-text: #fff;
-    --timer-text: red;
 }
 
 body {
@@ -36,18 +33,6 @@ body {
     user-select: none;
 }
 
-/* .bomb-container {
-    background-color: var(--bomb-bg);
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.8);
-    width: 80%;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: auto auto;
-    gap: 20px;
-} */
-
 .bomb-container {
     background-color: #222;
     border-radius: 10px;
@@ -57,49 +42,13 @@ body {
         inset 0 0 15px rgba(0, 0, 0, 0.5);
     width: 95%;
     max-width: 1400px;
-    margin: 0 auto;
+    margin: 20px auto;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-auto-rows: 1fr;
     gap: 25px;
     box-sizing: border-box;
     border: 5px solid #111;
-}
-
-.module {
-    aspect-ratio: 1 / 1;
-    background-color: #2a2a2a;
-    border: 3px solid #111;
-    border-radius: 8px;
-    padding: 15px;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    box-shadow: 
-        inset 0 0 10px rgba(0, 0, 0, 0.7),
-        0 5px 15px rgba(0, 0, 0, 0.5);
-    overflow: hidden;
-    min-height: 250px; /* Use min-height instead of fixed height */
-    box-sizing: border-box;
-}
-
-.module-header {
-    padding-bottom: 40px;
-}
-
-.module-title {
-    text-align: center;
-    margin-top: 0;
-    margin-bottom: 10px;
-    font-size: 14px;
-    color: #ccc;
-}
-
-.mini-module {
-    padding: 5%;
-    margin-bottom: 10px;
-    background-color: #222;
-    border: 2px solid #333;
 }
 
 /* Responsive Scaling */
@@ -123,109 +72,8 @@ body {
     }
     
     .module {
-        min-height: 300px;
+        min-height: 0px;
     }
-}
-
-
-/* Indicator Lights */
-.indicator-light, .indicator-lights {
-    top: 10px;
-    right: 10px;
-}
-
-.indicator-light, .submit-light {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    border: 1px solid #222;
-    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);
-}
-
-.indicator-light {
-    position: absolute;
-    box-shadow: 0 0 5px var(--light-off);
-    background-color: var(--light-off);
-    border: 1px solid #222;
-}
-
-.indicator-lights {
-    display: flex;
-    gap: 10px;
-    position: absolute;
-}
-
-.indicator-lights {
-    position: absolute;
-    display: flex;
-    gap: 8px;
-}
-
-.submit-light {
-    background-color: var(--light-red);
-    box-shadow: 0 0 5px var(--light-red);
-}
-
-/* Submit Module */
-.submit-module {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.submit-button {
-    /* Make it circular with equal width/height */
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    
-    /* Center text */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-    /* Visual styling */
-    background-color: #cc0000;
-    background-image: radial-gradient(circle at 30% 30%, #ff0000, #990000);
-    color: white;
-    border: none;
-    font-size: 50px;
-    font-weight: bold;
-    text-transform: uppercase;
-    font-family: 'Digital Clock', monospace;
-    
-    /* 3D effect */
-    box-shadow: 
-        0 9px 0 #700000,
-        0 9px 25px rgba(0, 0, 0, .7),
-        inset 0 2px 2px rgba(255, 255, 255, .4),
-        inset 0 -3px 2px rgba(0, 0, 0, .3);
-    
-    /* Positioning and interaction */
-    cursor: pointer;
-    margin: 0 auto 30px;
-    position: relative;
-    text-shadow: 0 -1px 0 rgba(0, 0, 0, .7);
-    
-    /* Smooth transitions */
-    transition: all 0.1s;
-}
-
-.submit-button:hover {
-    background-image: radial-gradient(circle at 30% 30%, #ff2222, #aa0000);
-}
-
-.submit-button:disabled {
-    background-image: radial-gradient(circle at 30% 30%, #888, #555);
-    box-shadow: 
-        0 5px 0 #333,
-        0 5px 25px rgba(0, 0, 0, .7),
-        inset 0 2px 2px rgba(255, 255, 255, .2),
-        inset 0 -3px 2px rgba(0, 0, 0, .3);
-    color: #aaa;
-    cursor: not-allowed;
-    text-shadow: 0 -1px 0 rgba(0, 0, 0, .4);
 }
 
 
@@ -265,32 +113,18 @@ body {
     font-family: 'Courier New', monospace;
 }
 
-/* Module Colors */
-.module-red {
-    background-image: linear-gradient(to bottom right, #3a1a1a, #2a1010);
+/* Module content area */
+.module-content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    gap: 15px;
 }
 
-.module-yellow {
-    background-image: linear-gradient(to bottom right, #3a3a1a, #2a2a10);
-}
-
-.module-green {
-    background-image: linear-gradient(to bottom right, #1a3a1a, #102a10);
-}
-
-.module-blue {
-    background-image: linear-gradient(to bottom right, #1a1a3a, #10102a);
-}
-
-/* Optional: Add a hint of the module color to the inner elements */
-.module-red .mini-module {
-    border-color: #4a2a2a;
-}
-
-.module-yellow .mini-module {
-    border-color: #4a4a2a;
-}
-
-.module-green .mini-module {
-    border-color: #2a4a2a;
+.selected {
+    border-color: yellow;
+    box-shadow: 
+        0 0 10px yellow,
+        0 3px 5px rgba(0, 0, 0, 0.3),
+        inset 0 1px 2px rgba(255, 255, 255, 0.2);
 }

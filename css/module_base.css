@@ -1,0 +1,188 @@
+.module {
+    aspect-ratio: 1 / 1;
+    background-color: #181717;
+    border: 3px solid #111;
+    border-radius: 8px;
+    padding: 15px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 
+        inset 0 0 10px rgba(0, 0, 0, 0.7),
+        0 5px 15px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.module {
+    min-height: 0; /* Critical for nested flex containers */
+    box-sizing: border-box;
+}
+
+.module-content {
+    min-height: 0; 
+}
+
+.mini-module {
+    padding: 5%;
+    margin-bottom: 10px;
+    background-color: #222;
+    border: 2px solid #333;
+}
+
+/* Header: Indicator Lights + Check Button */
+.module-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 15px;
+}
+
+/* Indicator Lights */
+.indicator-light, .indicator-lights {
+    top: 10px;
+    right: 10px;
+}
+
+.indicator-light, .submit-light {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    /* border: 1px solid #222; */
+    border: 2px solid #222;
+
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.indicator-light {
+    position: absolute;
+    box-shadow: 0 0 5px var(--light-off);
+    background-color: var(--light-off);
+    border: 2px solid #222;
+    transition: all 0.3s ease;
+}
+
+.indicator-lights {
+    position: absolute;
+    display: flex;
+    gap: 8px;
+}
+
+.submit-light {
+    background-color: var(--light-red);
+    box-shadow: 0 0 5px var(--light-red);
+}
+
+/* Module Colors */
+.module-red {
+    background-image: linear-gradient(to bottom right, #3a1a1a, #2a1010);
+}
+
+.module-yellow {
+    background-image: linear-gradient(to bottom right, #3a3a1a, #2a2a10);
+}
+
+.module-green {
+    background-image: linear-gradient(to bottom right, #1a3a1a, #102a10);
+}
+
+.module-blue {
+    background-image: linear-gradient(to bottom right, #1a1a3a, #10102a);
+}
+
+.module-red .mini-module {
+    border-color: #4a2a2a;
+    background-color: #2a1010;
+}
+
+.module-yellow .mini-module {
+    border-color: #4a4a2a;
+    background-color: #2a2a10;
+}
+
+.module-green .mini-module {
+    border-color: #2a4a2a;
+    background-color: #102a10;
+}
+
+.module-blue .mini-module {
+    border-color: #2a2a4a;
+    background-color: #121228;
+}
+
+/* Module Solved State */
+/* Add this to your main.css file */
+.module-solved {
+    opacity: 0.7;
+    position: relative;
+    pointer-events: none; /* Prevents interaction */
+}
+
+.module-solved::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 10;
+    border-radius: 8px;
+}
+
+.module-solved .module-content {
+    filter: grayscale(80%);
+}
+
+/* Add a check mark or "SOLVED" text when a module is completed */
+.module-solved::before {
+    content: 'SOLVED';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-15deg);
+    font-size: 36px;
+    font-weight: bold;
+    color: rgba(51, 255, 51, 0.7);
+    z-index: 20;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    letter-spacing: 2px;
+    font-family: 'Digital Clock', monospace;
+}
+
+/* Buttons */
+button {
+    font-family: 'Courier New', monospace;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.module-submit {
+    background-color: #333;
+    color: #fff;
+    font-size: 14px;
+    padding: 8px 15px;
+    border: 2px solid #222;
+    border-radius: 4px;
+    box-shadow: 
+        0 3px 0 #111,
+        0 4px 4px rgba(0, 0, 0, 0.3);
+}
+
+.module-submit:hover {
+    background-color: #444;
+}
+
+.module-submit:active {
+    transform: translateY(3px);
+    box-shadow: 0 0 0 #111;
+}
+
+/* Disabled Buttons */
+.disabled {
+    background-color: #555;
+    color: #aaa;
+    cursor: not-allowed;
+    pointer-events: none;
+}

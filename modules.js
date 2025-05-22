@@ -8,7 +8,7 @@ const gameState = {
     correctColorSequence: ['blue', 'yellow', 'lpink', 'orange'],
     colorSequenceCorrect: false,
     morseCode: '',
-    correctMorseCode: '...---...', // SOS
+    correctMorseCode: '-- .-', //'-. -.. .... - .- -... --- .- ..- .-..', // SOS
     
     // Module 2 state
     selectedSilhouettes: [],
@@ -23,8 +23,8 @@ const gameState = {
     selectedKnob: null,
     
     // Module completion state
-    moduleStatus: [false, false, false],
-    moduleSubmissions: [false, false, false]
+    moduleStatus: [false, false, false], // For module-level indicator
+    moduleSubmissions: [false, false, false] // For submission-level indicator
 };
 
 // DOM Elements
@@ -59,7 +59,6 @@ function initializeClockNumbers() {
         clockNumbers.appendChild(number);
     }
 }
-
 // Update Clock Hands
 function updateClockHands() {
     const hourHand = document.getElementById('hour-hand');
@@ -108,6 +107,12 @@ function gameOver(success) {
     }
 }
 
+function setLightColor(light, color) {
+    let color_str = `var(--light-${color})`;
+    light.style.backgroundColor = color_str;
+    light.style.boxShadow = `0 0 5px ${color_str}`;
+}
+
 // Reset Game Function
 function resetGame() {
     gameState.timer = 30 * 60; // 30 minutes in seconds
@@ -128,16 +133,23 @@ function resetGame() {
     document.getElementById('selected-word').textContent = gameState.wordList[0];
     
     // Reset module lights
-    module1Light.style.backgroundColor = 'var(--light-off)';
-    module2Light.style.backgroundColor = 'var(--light-off)';
-    module3Light.style.backgroundColor = 'var(--light-off)';
-    module1SubmitLight.style.backgroundColor = 'var(--light-red)';
-    module2SubmitLight.style.backgroundColor = 'var(--light-red)';
-    module3SubmitLight.style.backgroundColor = 'var(--light-red)';
-    
+    setLightColor(module1Light, 'off');
+    setLightColor(module2Light, 'off');
+    setLightColor(module3Light, 'off');
+    setLightColor(module1SubmitLight, 'red');
+    setLightColor(module2SubmitLight, 'red');
+    setLightColor(module3SubmitLight, 'red');
+
+    // Reset color buttons
+    document.querySelectorAll('.color-button').forEach(button => {
+        button.classList.remove('selected');
+        button.classList.remove('disabled');
+    });
+        
     // Reset silhouette buttons
     document.querySelectorAll('.silhouette-button').forEach(button => {
         button.classList.remove('selected');
+        button.classList.remove('disabled');
     });
     
     // Reset clock
@@ -152,6 +164,11 @@ function resetGame() {
     // Hide game over screen
     gameOverElement.style.display = 'none';
     gameOverElement.classList.remove('success');
+
+    // Remove 'module-solved' class from all modules
+    document.querySelectorAll('.module-solved').forEach(module => {
+        module.classList.remove('module-solved');
+    });
     
     // Disable main submit button
     mainSubmitButton.disabled = true;
@@ -171,56 +188,51 @@ function checkAllModulesSolved() {
 function initializeModule1() {
     // Color buttons
     const colorButtons = document.querySelectorAll('.color-button');
+
     colorButtons.forEach(button => {
         button.addEventListener('click', () => {
             if (!gameState.gameActive) return;
-
-            if (button.classList.contains('selected')) {
-                button.classList.remove('selected');
-                // gameState.selectedSilhouettes = gameState.selectedSilhouettes.filter(i => i !== silhouette);
-            } else {
-                // Only allow selecting 4 buttons
-                if (gameState.selectedSilhouettes.length < 4) {
-                    button.classList.add('selected');
-                    // gameState.selectedSilhouettes.push(silhouette);
-                }
-            }
             
             const color = button.getAttribute('data-color');
-            gameState.colorSequence.push(color);
-            
+
             // Flash the button to indicate it was pressed
             button.style.opacity = '0.5';
             setTimeout(() => { button.style.opacity = '1'; }, 200);
             
-            // Check if the sequence is correct so far
-            const enteredLength = gameState.colorSequence.length;
-            const correctSoFar = gameState.colorSequence.every((color, index) => 
-                color === gameState.correctColorSequence[index]
-            );
-            
-            if (!correctSoFar) {
-                // Incorrect sequence - flash the module light red
-                module1Light.style.backgroundColor = 'var(--light-red)';
-                colorButtons.forEach(btn => btn.classList.remove('selected'));
-                
-                // Visual feedback for error
-                setTimeout(() => {
-                    if (!gameState.colorSequenceCorrect) {
-                        module1Light.style.backgroundColor = 'var(--light-off)';
-                    }
-                }, 500);
-                
-                // Reset the sequence
-                gameState.colorSequence = [];
-                return;
+            // Toggle selection
+            if (button.classList.contains('selected')) {
+                button.classList.remove('selected');
+                gameState.colorSequence = gameState.colorSequence.filter(i => i !== color);
+            } else {
+                // Only allow selecting 4 buttons
+                if (gameState.colorSequence.length < 4) {
+                    button.classList.add('selected');
+                    gameState.colorSequence.push(color);
+                }
             }
             
-            // If complete and correct sequence
-            if (enteredLength === gameState.correctColorSequence.length) {
-                module1Light.style.backgroundColor = 'var(--light-green)';
-                gameState.colorSequenceCorrect = true;
-                gameState.moduleStatus[0] = true;
+            // Check if the color sequence is correct
+            if (gameState.colorSequence.length === 4) {
+                const correctSequence = gameState.colorSequence.join(',') === 
+                                        gameState.correctColorSequence.join(',');
+                
+                if (correctSequence) {
+                    setLightColor(module1Light, 'green');
+                    gameState.moduleStatus[0] = true;
+                    gameState.colorSequenceCorrect = true;
+
+                    // Make it so the buttons can no longer be interacted with
+                    colorButtons.forEach(btn => {
+                        btn.classList.add('disabled');
+                    });
+                } else {
+                    setLightColor(module1Light, 'red');
+                    // Reset selections
+                    gameState.colorSequence = [];
+                    colorButtons.forEach(btn => btn.classList.remove('selected'));
+                }
+            } else {
+                setLightColor(module1Light, 'off');
             }
         });
     });
@@ -229,6 +241,8 @@ function initializeModule1() {
     const morseDisplay = document.getElementById('morse-display');
     const dotButton = document.getElementById('dot-button');
     const dashButton = document.getElementById('dash-button');
+    const spaceButton = document.getElementById('space-button');
+    const backButton = document.getElementById('back-button');
     const clearMorseButton = document.getElementById('clear-morse');
     const submitMorseButton = document.getElementById('submit-morse');
     
@@ -243,11 +257,23 @@ function initializeModule1() {
         gameState.morseCode += '-';
         morseDisplay.textContent = gameState.morseCode;
     });
+
+    backButton.addEventListener('click', () => {
+        if (!gameState.gameActive || !gameState.colorSequenceCorrect) return;
+        gameState.morseCode = gameState.morseCode.slice(0, -1);
+        morseDisplay.textContent = gameState.morseCode;
+    });
     
     clearMorseButton.addEventListener('click', () => {
         if (!gameState.gameActive) return;
         gameState.morseCode = '';
         morseDisplay.textContent = '';
+    });
+
+    spaceButton.addEventListener('click', () => {
+        if (!gameState.gameActive || !gameState.colorSequenceCorrect) return;
+        gameState.morseCode += ' ';
+        morseDisplay.textContent = gameState.morseCode;
     });
     
     submitMorseButton.addEventListener('click', () => {
@@ -255,11 +281,12 @@ function initializeModule1() {
         
         // Check if morse code is correct
         if (gameState.morseCode === gameState.correctMorseCode) {
-            module1SubmitLight.style.backgroundColor = 'var(--light-green)';
+            setLightColor(module1SubmitLight, 'green');
             gameState.moduleSubmissions[0] = true;
+            document.getElementById('module-1').classList.add('module-solved');
             checkAllModulesSolved();
         } else {
-            module1SubmitLight.style.backgroundColor = 'var(--light-red)';
+            setLightColor(module1SubmitLight, 'red');
             gameState.morseCode = '';
             morseDisplay.textContent = '';
         }
@@ -273,6 +300,8 @@ function initializeModule2() {
     const wordPrevButton = document.getElementById('word-prev');
     const wordNextButton = document.getElementById('word-next');
     const submitWordButton = document.getElementById('submit-word');
+
+    selectedWordElement.textContent = gameState.wordList[0];
     
     silhouetteButtons.forEach(button => {
         button.addEventListener('click', () => {
@@ -294,20 +323,25 @@ function initializeModule2() {
             
             // Check if the silhouette sequence is correct
             if (gameState.selectedSilhouettes.length === 4) {
-                const correctSequence = gameState.selectedSilhouettes.sort().join(',') === 
-                                        gameState.correctSilhouetteSequence.sort().join(',');
+                const correctSequence = gameState.selectedSilhouettes.join(',') === 
+                                        gameState.correctSilhouetteSequence.join(',');
                 
                 if (correctSequence) {
-                    module2Light.style.backgroundColor = 'var(--light-green)';
+                    setLightColor(module2Light, 'green');
                     gameState.moduleStatus[1] = true;
+
+                    // Make it so the buttons can no longer be interacted with
+                    silhouetteButtons.forEach(btn => {
+                        btn.classList.add('disabled');
+                    });
                 } else {
-                    module2Light.style.backgroundColor = 'var(--light-red)';
+                    setLightColor(module2Light, 'red');
                     // Reset selections
                     gameState.selectedSilhouettes = [];
                     silhouetteButtons.forEach(btn => btn.classList.remove('selected'));
                 }
             } else {
-                module2Light.style.backgroundColor = 'var(--light-off)';
+                setLightColor(module2Light, 'off');
             }
         });
     });
@@ -332,11 +366,12 @@ function initializeModule2() {
         
         const selectedWord = gameState.wordList[gameState.currentWordIndex];
         if (selectedWord === gameState.correctWord) {
-            module2SubmitLight.style.backgroundColor = 'var(--light-green)';
+            setLightColor(module2SubmitLight, 'green');
             gameState.moduleSubmissions[1] = true;
+            document.getElementById('module-2').classList.add('module-solved');
             checkAllModulesSolved();
         } else {
-            module2SubmitLight.style.backgroundColor = 'var(--light-red)';
+            setLightColor(module2SubmitLight, 'red');
             gameState.currentWordIndex = 0;
             selectedWordElement.textContent = gameState.wordList[0];
         }
@@ -438,13 +473,14 @@ function initializeModule3() {
         // Check if clock time is correct
         if (gameState.clockTime.hours === gameState.correctClockTime.hours && 
             gameState.clockTime.minutes === gameState.correctClockTime.minutes) {
-            module3Light.style.backgroundColor = 'var(--light-green)';
-            module3SubmitLight.style.backgroundColor = 'var(--light-green)';
+            setLightColor(module3Light, 'green');
+            setLightColor(module3SubmitLight, 'green');
             gameState.moduleStatus[2] = true;
             gameState.moduleSubmissions[2] = true;
+            document.getElementById('module-3').classList.add('module-solved');
             checkAllModulesSolved();
         } else {
-            module3Light.style.backgroundColor = 'var(--light-red)';
+            setLightColor(module3Light, 'red');
             // Reset clock
             gameState.clockTime = { hours: 12, minutes: 0 };
             updateClockHands();

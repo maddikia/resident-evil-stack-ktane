@@ -1,0 +1,63 @@
+/* Submit Module */
+#submit-module {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.submit-button {
+    /* Make it circular with equal width/height */
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    
+    /* Center text */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    /* Visual styling */
+    background-color: #cc0000;
+    background-image: radial-gradient(circle at 30% 30%, #ff0000, #990000);
+    color: white;
+    border: none;
+    font-size: 50px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-family: 'Digital Clock', monospace;
+    
+    /* 3D effect */
+    box-shadow: 
+        0 9px 0 #700000,
+        0 9px 25px rgba(0, 0, 0, .7),
+        inset 0 2px 2px rgba(255, 255, 255, .4),
+        inset 0 -3px 2px rgba(0, 0, 0, .3);
+    
+    /* Positioning and interaction */
+    cursor: pointer;
+    margin: 0 auto 30px;
+    position: relative;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, .7);
+    
+    /* Smooth transitions */
+    transition: all 0.1s;
+}
+
+.submit-button:hover {
+    transform: scale(1.05);
+    background-image: radial-gradient(circle at 30% 30%, #ff2222, #aa0000);
+}
+
+.submit-button:disabled {
+    background-image: radial-gradient(circle at 30% 30%, #888, #555);
+    box-shadow: 
+        0 5px 0 #333,
+        0 5px 25px rgba(0, 0, 0, .7),
+        inset 0 2px 2px rgba(255, 255, 255, .2),
+        inset 0 -3px 2px rgba(0, 0, 0, .3);
+    color: #aaa;
+    cursor: not-allowed;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, .4);
+}
+

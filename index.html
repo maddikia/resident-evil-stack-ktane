@@ -19,7 +19,7 @@
             </div>
         </div>
         <!-- Module 1: Color Buttons & Morse Code -->
-        <div class="module module-green">
+        <div class="module module-green" id="module-1">
             <div class="module-header">
                 <button class="module-submit" id="submit-morse">CHECK</button>
                 <div class="indicator-light" id="module1-light"></div>
@@ -30,13 +30,13 @@
                     <div class="color-button" style="background-color: yellow;" data-color="yellow"></div>
                     <div class="color-button" style="background-color: pink;" data-color="lpink"></div>
                     <div class="color-button" style="background-color: magenta;" data-color="magenta"></div>
-                    <div class="color-button" style="background-color: purple;" data-color="purple"></div>
+                    <div class="color-button" style="background-color: rgb(169, 37, 218);" data-color="purple"></div>
                     <div class="color-button" style="background-color: red;" data-color="red"></div>
                     <div class="color-button" style="background-color: blue;" data-color="blue"></div>
                     <div class="color-button" style="background-color: black;" data-color="black"></div>
                     <div class="color-button" style="background-color: green;" data-color="green"></div>
                     <div class="color-button" style="background-color: orange;" data-color="orange"></div>
-                    <div class="color-button" style="background-color: #ccff00;" data-color="nyellow"></div>
+                    <div class="color-button" style="background-color: #ccff04;" data-color="nyellow"></div>
                 </div>
                 
                 <div class="morse-input mini-module">
@@ -45,6 +45,7 @@
                         <button class="morse-button" id="dot-button">·</button>
                         <button class="morse-button" id="dash-button">-</button>
                         <button class="morse-button" id="space-button">Space</button>
+                        <button class="morse-button" id="back-button">←</button>
                         <button class="clear-button" id="clear-morse">Clear</button>
                     </div>
                 </div>
@@ -52,7 +53,7 @@
         </div>
         
         <!-- Submit Module -->
-        <div class="module submit-module module-red">
+        <div class="module module-red" id="submit-module">
             <div class="module-header">
                 <div class="indicator-lights">
                     <div class="submit-light" id="module1-submit-light"></div>
@@ -64,7 +65,7 @@
         </div>
         
         <!-- Module 2: Silhouettes -->
-        <div class="module module-blue">
+        <div class="module module-blue" id="module-2">
             <div class="module-header">
                 <button class="module-submit" id="submit-word">CHECK</button>
                 <div class="indicator-light" id="module2-light"></div>
@@ -103,13 +104,10 @@
                 
                 <div class="word-selector mini-module">
                     <div class="selector-arrow" id="word-prev">←</div>
-                    <div class="selected-word" id="selected-word">CHECK</div>
+                    <div class="selected-word" id="selected-word"></div>
                     <div class="selector-arrow" id="word-next">→</div>
                 </div>
-    
             </div>
-            
-
         </div>
 
         <!-- Empty Module: Note -->
@@ -126,7 +124,7 @@
         </div>
         
         <!-- Module 3: Clock and Knobs -->
-        <div class="module module-yellow">
+        <div class="module module-yellow" id="module-3">
             <div class="module-header">
                 <button class="module-submit" id="submit-clock">CHECK</button>
                 <div class="indicator-light" id="module3-light"></div>
