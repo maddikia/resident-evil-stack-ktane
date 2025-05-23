@@ -15,7 +15,7 @@ const gameState = {
     correctSilhouetteSequence: ['lamp', 'cure', 'knight', 'chainsaw'],
     currentWordIndex: 0,
     wordList: ['SOS', 'BOB', 'BIG', 'ESE', 'BOO', 'SET', 'LOT'],
-    correctWord: 'BIG',
+    correctWord: 'SET',
     
     // Module 3 state
     clockTime: { hours: 12, minutes: 0 },
