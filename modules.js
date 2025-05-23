@@ -8,7 +8,7 @@ const gameState = {
     correctColorSequence: ['blue', 'yellow', 'lpink', 'orange'],
     colorSequenceCorrect: false,
     morseCode: '',
-    correctMorseCode: '-. -.. .... - .- -... --- .- ..- .-..', // SOS
+    correctMorseCode: '-. -.. .... - .- -... --- .- ..- .-..',
     
     // Module 2 state
     selectedSilhouettes: [],
