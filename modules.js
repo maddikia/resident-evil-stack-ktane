@@ -14,7 +14,7 @@ const gameState = {
     selectedSilhouettes: [],
     correctSilhouetteSequence: ['lamp', 'cure', 'knight', 'chainsaw'],
     currentWordIndex: 0,
-    wordList: ['SOS', 'BOB', 'BIG', 'ESE'],
+    wordList: ['SOS', 'BOB', 'BIG', 'ESE', 'BOO', 'SET', 'LOT'],
     correctWord: 'BIG',
     
     // Module 3 state
