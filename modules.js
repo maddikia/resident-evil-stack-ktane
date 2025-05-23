@@ -8,11 +8,11 @@ const gameState = {
     correctColorSequence: ['blue', 'yellow', 'lpink', 'orange'],
     colorSequenceCorrect: false,
     morseCode: '',
-    correctMorseCode: '-- .-', //'-. -.. .... - .- -... --- .- ..- .-..', // SOS
+    correctMorseCode: '-. -.. .... - .- -... --- .- ..- .-..', // SOS
     
     // Module 2 state
     selectedSilhouettes: [],
-    correctSilhouetteSequence: ['lamp', 'lion', 'plaga', 'cure'],
+    correctSilhouetteSequence: ['lamp', 'cure', 'knight', 'chainsaw'],
     currentWordIndex: 0,
     wordList: ['PUT', 'ALL', 'YOUR', 'WORDS', 'HERE', 'RESIDENT', 'EVIL', 'STACK', 'SENIOR'],
     correctWord: 'EVIL',
